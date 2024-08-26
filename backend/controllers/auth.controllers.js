@@ -1,6 +1,7 @@
 import {User} from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 import { setCookie } from "../utils/setCookie.js"
+import { sendVerificationEmail } from "../mailtrap/emails.js"
 export const signUp = async (req, res) => {
     const {email,password,name} = req.body
     try {
@@ -24,6 +25,7 @@ export const signUp = async (req, res) => {
         await user.save();
 
         setCookie(res,user._id)
+        await sendVerificationEmail(user.email,verificationToken)
         res.status(201).json({success: true, message:"User signed up successfully",user: {...user._doc,password: undefined}})
         //in order not to return password, we can write it like this.
         
