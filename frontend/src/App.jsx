@@ -7,6 +7,8 @@ import {Toaster} from "react-hot-toast"
 import { useAuthStore } from "./store/authStore"
 import { useEffect } from "react"
 import Dashboard from "./pages/Dashboard"
+import ForgotPassword from "./pages/ForgotPassword"
+import ResetPasswordPage from "./pages/ResetPasswordPage"
 
 
 const ProtectedRoute = ({children}) => {
@@ -53,7 +55,10 @@ console.log(user);
         <Route path="/" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
         <Route path="/signup" element={<RedirectAuthenticatedUser><Signup/></RedirectAuthenticatedUser>} />
         <Route path="/login" element={<RedirectAuthenticatedUser><Login/></RedirectAuthenticatedUser>} />
+        <Route path="/forgot-password" element={<RedirectAuthenticatedUser><ForgotPassword/></RedirectAuthenticatedUser>} />
+        <Route path="/reset-password/:token" element={<RedirectAuthenticatedUser><ResetPasswordPage/></RedirectAuthenticatedUser>} />
         <Route path="/verify-email" element={<EmailVerificationPage/>} />
+        <Route path="*" element={<Navigate to={"/"} replace/>} />
       </Routes>
       <Toaster/>
     

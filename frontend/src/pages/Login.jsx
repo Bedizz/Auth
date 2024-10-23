@@ -52,6 +52,7 @@ const Login = () => {
       </motion.button>
       </form>
       </div>
+      <Link to={"/forgot-password"} className='text-sm text-green-400 hover:underline flex justify-start ml-10 mb-5'>Forgot your password?</Link>
       <div className='flex justify-center items-center px-8 py-4 bg-gray-900 bg-opacity-50  '>
         <p className='text-sm text-gray-400'>Don't have an account? {" "}
           <Link to={"/signup"}
