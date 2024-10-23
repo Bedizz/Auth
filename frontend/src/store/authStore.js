@@ -2,7 +2,7 @@ import {create} from "zustand";
 import axios from "axios";
 
 
-const API_URL= "http://localhost:5000/api/auth";
+const API_URL= import.meta.env.MODE === "development" ? "http://localhost:5000/api/auth" : "/api/auth";
 // Bu kod, Axios kütüphanesini kullanırken yapılan HTTP isteklerinde kimlik doğrulama bilgilerini (credentials) otomatik olarak sunucuya gönderilmesini sağlar. her istekte bu çerezlerin gönderilmesi sağlanır.
 axios.defaults.withCredentials = true;
 
