@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 
 export const verifyToken = async (req,res,next) => {
- const token = req.cookie.token;
+ const token = req.cookies.token;
  if(!token) return res.status(401).json({success: false, message: "Unauthorized - no token provided"})
 
 try {

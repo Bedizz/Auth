@@ -81,7 +81,7 @@ export const VerifyEmail = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "server error" });
+    res.status(500).json({ success: false, message: "Invalid or expired verification code" });
   }
 };
 export const LogIn = async (req, res) => {
@@ -104,7 +104,10 @@ export const LogIn = async (req, res) => {
 
     user.lastLogin = new Date();
     await user.save();
-    res.status(200).json({ success: true, message: "Logged in successfully" });
+    res.status(200).json({ success: true, message: "Logged in successfully", user: {
+      ...user._doc,
+      password: undefined,
+    }, });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
